@@ -1,0 +1,405 @@
+{
+  "workoutName": "Ejemplo Full Body",
+  "description": "Workout de ejemplo de garmin-claude-starter. Sustituye ejercicios y cargas por los tuyos.",
+  "sportType": {
+    "sportTypeId": 5,
+    "sportTypeKey": "strength_training"
+  },
+  "workoutSegments": [
+    {
+      "segmentOrder": 1,
+      "sportType": {
+        "sportTypeId": 5,
+        "sportTypeKey": "strength_training"
+      },
+      "workoutSteps": [
+        {
+          "type": "ExecutableStepDTO",
+          "stepOrder": 1,
+          "childStepId": null,
+          "stepType": {
+            "stepTypeId": 1,
+            "stepTypeKey": "warmup"
+          },
+          "description": "Calentamiento: 10 lentas, columna entera",
+          "endCondition": {
+            "conditionTypeId": 10,
+            "conditionTypeKey": "reps"
+          },
+          "endConditionValue": 10,
+          "targetType": {
+            "workoutTargetTypeId": 1,
+            "workoutTargetTypeKey": "no.target"
+          },
+          "category": "WARM_UP",
+          "exerciseName": "CAT_CAMEL"
+        },
+        {
+          "type": "ExecutableStepDTO",
+          "stepOrder": 2,
+          "childStepId": null,
+          "stepType": {
+            "stepTypeId": 1,
+            "stepTypeKey": "warmup"
+          },
+          "description": "Calentamiento: 10 hacia delante y 10 hacia atrás",
+          "endCondition": {
+            "conditionTypeId": 10,
+            "conditionTypeKey": "reps"
+          },
+          "endConditionValue": 20,
+          "targetType": {
+            "workoutTargetTypeId": 1,
+            "workoutTargetTypeKey": "no.target"
+          },
+          "category": "WARM_UP",
+          "exerciseName": "ARM_CIRCLES"
+        },
+        {
+          "type": "RepeatGroupDTO",
+          "stepOrder": 3,
+          "childStepId": 1,
+          "stepType": {
+            "stepTypeId": 6,
+            "stepTypeKey": "repeat"
+          },
+          "endCondition": {
+            "conditionTypeId": 7,
+            "conditionTypeKey": "iterations"
+          },
+          "endConditionValue": 3,
+          "numberOfIterations": 3,
+          "skipLastRestStep": false,
+          "smartRepeat": false,
+          "workoutSteps": [
+            {
+              "type": "ExecutableStepDTO",
+              "stepOrder": 4,
+              "childStepId": 1,
+              "stepType": {
+                "stepTypeId": 3,
+                "stepTypeKey": "interval"
+              },
+              "description": "8 por pierna, rodilla trasera casi al suelo",
+              "endCondition": {
+                "conditionTypeId": 10,
+                "conditionTypeKey": "reps"
+              },
+              "endConditionValue": 16,
+              "targetType": {
+                "workoutTargetTypeId": 1,
+                "workoutTargetTypeKey": "no.target"
+              },
+              "category": "LUNGE",
+              "exerciseName": "DUMBBELL_REVERSE_LUNGE",
+              "weightValue": 20,
+              "weightUnit": {
+                "unitId": 8,
+                "unitKey": "kilogram",
+                "factor": 1000
+              }
+            },
+            {
+              "type": "ExecutableStepDTO",
+              "stepOrder": 5,
+              "childStepId": 1,
+              "stepType": {
+                "stepTypeId": 5,
+                "stepTypeKey": "rest"
+              },
+              "description": "Descanso 90 s",
+              "endCondition": {
+                "conditionTypeId": 2,
+                "conditionTypeKey": "time"
+              },
+              "endConditionValue": 90,
+              "targetType": {
+                "workoutTargetTypeId": 1,
+                "workoutTargetTypeKey": "no.target"
+              },
+              "category": null,
+              "exerciseName": null
+            }
+          ]
+        },
+        {
+          "type": "RepeatGroupDTO",
+          "stepOrder": 6,
+          "childStepId": 2,
+          "stepType": {
+            "stepTypeId": 6,
+            "stepTypeKey": "repeat"
+          },
+          "endCondition": {
+            "conditionTypeId": 7,
+            "conditionTypeKey": "iterations"
+          },
+          "endConditionValue": 3,
+          "numberOfIterations": 3,
+          "skipLastRestStep": false,
+          "smartRepeat": false,
+          "workoutSteps": [
+            {
+              "type": "ExecutableStepDTO",
+              "stepOrder": 7,
+              "childStepId": 2,
+              "stepType": {
+                "stepTypeId": 3,
+                "stepTypeKey": "interval"
+              },
+              "description": "10 reps, cuerpo en bloque",
+              "endCondition": {
+                "conditionTypeId": 10,
+                "conditionTypeKey": "reps"
+              },
+              "endConditionValue": 10,
+              "targetType": {
+                "workoutTargetTypeId": 1,
+                "workoutTargetTypeKey": "no.target"
+              },
+              "category": "PUSH_UP",
+              "exerciseName": "PUSH_UP"
+            },
+            {
+              "type": "ExecutableStepDTO",
+              "stepOrder": 8,
+              "childStepId": 2,
+              "stepType": {
+                "stepTypeId": 5,
+                "stepTypeKey": "rest"
+              },
+              "description": "Descanso 90 s",
+              "endCondition": {
+                "conditionTypeId": 2,
+                "conditionTypeKey": "time"
+              },
+              "endConditionValue": 90,
+              "targetType": {
+                "workoutTargetTypeId": 1,
+                "workoutTargetTypeKey": "no.target"
+              },
+              "category": null,
+              "exerciseName": null
+            }
+          ]
+        },
+        {
+          "type": "RepeatGroupDTO",
+          "stepOrder": 9,
+          "childStepId": 3,
+          "stepType": {
+            "stepTypeId": 6,
+            "stepTypeKey": "repeat"
+          },
+          "endCondition": {
+            "conditionTypeId": 7,
+            "conditionTypeKey": "iterations"
+          },
+          "endConditionValue": 3,
+          "numberOfIterations": 3,
+          "skipLastRestStep": false,
+          "smartRepeat": false,
+          "workoutSteps": [
+            {
+              "type": "ExecutableStepDTO",
+              "stepOrder": 10,
+              "childStepId": 3,
+              "stepType": {
+                "stepTypeId": 3,
+                "stepTypeKey": "interval"
+              },
+              "description": "10 reps, pausa de 1 s con los codos atrás",
+              "endCondition": {
+                "conditionTypeId": 10,
+                "conditionTypeKey": "reps"
+              },
+              "endConditionValue": 10,
+              "targetType": {
+                "workoutTargetTypeId": 1,
+                "workoutTargetTypeKey": "no.target"
+              },
+              "category": "ROW",
+              "exerciseName": "SEATED_CABLE_ROW",
+              "weightValue": 35,
+              "weightUnit": {
+                "unitId": 8,
+                "unitKey": "kilogram",
+                "factor": 1000
+              }
+            },
+            {
+              "type": "ExecutableStepDTO",
+              "stepOrder": 11,
+              "childStepId": 3,
+              "stepType": {
+                "stepTypeId": 5,
+                "stepTypeKey": "rest"
+              },
+              "description": "Descanso 90 s",
+              "endCondition": {
+                "conditionTypeId": 2,
+                "conditionTypeKey": "time"
+              },
+              "endConditionValue": 90,
+              "targetType": {
+                "workoutTargetTypeId": 1,
+                "workoutTargetTypeKey": "no.target"
+              },
+              "category": null,
+              "exerciseName": null
+            }
+          ]
+        },
+        {
+          "type": "RepeatGroupDTO",
+          "stepOrder": 12,
+          "childStepId": 4,
+          "stepType": {
+            "stepTypeId": 6,
+            "stepTypeKey": "repeat"
+          },
+          "endCondition": {
+            "conditionTypeId": 7,
+            "conditionTypeKey": "iterations"
+          },
+          "endConditionValue": 3,
+          "numberOfIterations": 3,
+          "skipLastRestStep": false,
+          "smartRepeat": false,
+          "workoutSteps": [
+            {
+              "type": "ExecutableStepDTO",
+              "stepOrder": 13,
+              "childStepId": 4,
+              "stepType": {
+                "stepTypeId": 3,
+                "stepTypeKey": "interval"
+              },
+              "description": "10 reps, espalda neutra, empuja el suelo",
+              "endCondition": {
+                "conditionTypeId": 10,
+                "conditionTypeKey": "reps"
+              },
+              "endConditionValue": 10,
+              "targetType": {
+                "workoutTargetTypeId": 1,
+                "workoutTargetTypeKey": "no.target"
+              },
+              "category": "DEADLIFT",
+              "exerciseName": "KETTLEBELL_DEADLIFT",
+              "weightValue": 24,
+              "weightUnit": {
+                "unitId": 8,
+                "unitKey": "kilogram",
+                "factor": 1000
+              }
+            },
+            {
+              "type": "ExecutableStepDTO",
+              "stepOrder": 14,
+              "childStepId": 4,
+              "stepType": {
+                "stepTypeId": 5,
+                "stepTypeKey": "rest"
+              },
+              "description": "Descanso 90 s",
+              "endCondition": {
+                "conditionTypeId": 2,
+                "conditionTypeKey": "time"
+              },
+              "endConditionValue": 90,
+              "targetType": {
+                "workoutTargetTypeId": 1,
+                "workoutTargetTypeKey": "no.target"
+              },
+              "category": null,
+              "exerciseName": null
+            }
+          ]
+        },
+        {
+          "type": "RepeatGroupDTO",
+          "stepOrder": 15,
+          "childStepId": 5,
+          "stepType": {
+            "stepTypeId": 6,
+            "stepTypeKey": "repeat"
+          },
+          "endCondition": {
+            "conditionTypeId": 7,
+            "conditionTypeKey": "iterations"
+          },
+          "endConditionValue": 2,
+          "numberOfIterations": 2,
+          "skipLastRestStep": false,
+          "smartRepeat": false,
+          "workoutSteps": [
+            {
+              "type": "ExecutableStepDTO",
+              "stepOrder": 16,
+              "childStepId": 5,
+              "stepType": {
+                "stepTypeId": 3,
+                "stepTypeKey": "interval"
+              },
+              "description": "8 reps, 3 s arriba",
+              "endCondition": {
+                "conditionTypeId": 10,
+                "conditionTypeKey": "reps"
+              },
+              "endConditionValue": 8,
+              "targetType": {
+                "workoutTargetTypeId": 1,
+                "workoutTargetTypeKey": "no.target"
+              },
+              "category": "CRUNCH",
+              "exerciseName": "MCGILL_CURL_UP"
+            },
+            {
+              "type": "ExecutableStepDTO",
+              "stepOrder": 17,
+              "childStepId": 5,
+              "stepType": {
+                "stepTypeId": 5,
+                "stepTypeKey": "rest"
+              },
+              "description": "Descanso 60 s",
+              "endCondition": {
+                "conditionTypeId": 2,
+                "conditionTypeKey": "time"
+              },
+              "endConditionValue": 60,
+              "targetType": {
+                "workoutTargetTypeId": 1,
+                "workoutTargetTypeKey": "no.target"
+              },
+              "category": null,
+              "exerciseName": null
+            }
+          ]
+        },
+        {
+          "type": "ExecutableStepDTO",
+          "stepOrder": 18,
+          "childStepId": null,
+          "stepType": {
+            "stepTypeId": 2,
+            "stepTypeKey": "cooldown"
+          },
+          "description": "Vuelta a la calma: 8 respiraciones lentas",
+          "endCondition": {
+            "conditionTypeId": 10,
+            "conditionTypeKey": "reps"
+          },
+          "endConditionValue": 8,
+          "targetType": {
+            "workoutTargetTypeId": 1,
+            "workoutTargetTypeKey": "no.target"
+          },
+          "category": "WARM_UP",
+          "exerciseName": "STRETCH_CAT_COW"
+        }
+      ]
+    }
+  ]
+}
