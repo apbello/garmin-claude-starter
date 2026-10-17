@@ -319,7 +319,7 @@ garmin:schedule_workout(workout_id = <id>, calendar_date = "YYYY-MM-DD")
 
 ## Reference files
 
-- `../../GOTCHAS.md` (en la raíz del repo) — catálogo de trampas con síntoma y regla
+- `GOTCHAS.md` (en la carpeta de trabajo del usuario o en la raíz del repo) — catálogo de trampas con síntoma y regla. Léelo antes de montar un workout de un tipo que no hayas montado antes
 
 - `references/exercises.md` — Full Garmin exercise database (category + name for every exercise)
 

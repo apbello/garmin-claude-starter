@@ -4,7 +4,7 @@
 
 Un workout de fuerza completo: dos pasos de calentamiento, cinco ejercicios en grupos de repetición con su descanso y un paso de vuelta a la calma. Los ejercicios y las cargas son inventados; sustitúyelos por los tuyos.
 
-Para probarlo, pídele a Claude: *"Sube a mi Garmin el workout de `ejemplos/fuerza-full-body.json`"*.
+Es el que sube la skill `primeros-pasos` para comprobar que todo funciona. También puedes subirlo a mano pidiéndole a Claude Code: *"Sube a mi Garmin el workout de `fuerza-full-body.json`"*.
 
 JSON no admite comentarios y Garmin podría rechazar campos que no conoce, así que el fichero va limpio y los comentarios están aquí. Estos son los campos que más se fallan, en el orden en que aparecen:
 

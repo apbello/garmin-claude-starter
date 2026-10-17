@@ -2,7 +2,7 @@
 
 **Esto es el armazón, no mi sistema. El 95% del valor está en el contexto que acumules tú.**
 
-Un punto de partida para que Claude cree tus entrenamientos, los suba a tu reloj Garmin y aprenda de lo que falla. Lo que hay aquí me costó meses de prueba y error: la estructura de los workouts que Garmin acepta, las trampas que no avisan y un mecanismo para que el sistema no descubra lo mismo tres veces. Con esto deberías tenerlo funcionando en una tarde.
+Un punto de partida para que Claude Code cree tus entrenamientos, los suba a tu reloj Garmin y aprenda de lo que falla. Lo que hay aquí me costó meses de prueba y error: la estructura de los workouts que Garmin acepta, las trampas que no avisan y un mecanismo para que el sistema no descubra lo mismo tres veces. Con esto deberías tenerlo funcionando en una tarde.
 
 Artículo que explica el porqué: [URL_ARTICULO]
 
@@ -12,6 +12,7 @@ Artículo que explica el porqué: [URL_ARTICULO]
 
 - Una skill para construir workouts de fuerza (y otros deportes) en el formato exacto que acepta Garmin Connect y subirlos al reloj.
 - Un catálogo de trampas ([GOTCHAS.md](GOTCHAS.md)) con el síntoma que ves en el reloj y la regla que lo evita. Es la parte más valiosa del repo.
+- Una skill de onboarding que comprueba que todo funciona y te lleva hasta la primera sesión.
 - Una skill para persistir aprendizajes, para que cada fallo se convierta en una regla escrita en vez de en un recuerdo.
 - Plantillas vacías para tu perfil, tu plan y tu log.
 - Un workout de ejemplo que sube bien a la primera.
@@ -26,40 +27,37 @@ El armazón es lo fácil de copiar. Lo que hace que esto funcione es el contexto
 
 ## Requisitos
 
-- [Claude Desktop](https://claude.ai/download) o [Claude Code](https://docs.claude.com/en/docs/claude-code).
+- **[Claude Code](https://docs.claude.com/en/docs/claude-code).** Este armazón está pensado para Claude Code, porque el sistema necesita leer y escribir ficheros en tu ordenador: tu perfil, tu plan, tu log y las reglas que va aprendiendo. Claude Desktop puede crear workouts con el mismo MCP, pero no puede guardar lo que aprende, y sin eso se pierde la parte que hace que mejore.
 - Una cuenta de Garmin Connect y un reloj que admita workouts estructurados.
-- [`uv`](https://docs.astral.sh/uv/) instalado (lo usa `uvx` para lanzar el servidor MCP). Python 3.12 o superior.
+- [`uv`](https://docs.astral.sh/uv/), para lanzar el servidor MCP. Él mismo se descarga la versión de Python que necesita.
 
 ## ⚠️ Advertencia: esto no es una API oficial
 
 La conexión con Garmin usa [garmin_mcp](https://github.com/Taxuspt/garmin_mcp), un servidor MCP **de la comunidad**. Por debajo usa [python-garminconnect](https://github.com/cyberjunky/python-garminconnect), que habla con la misma interfaz que usa la app de Garmin Connect. **No es una API oficial de Garmin y puede romperse** cuando Garmin cambie algo, sin aviso. Si un día deja de funcionar, mira primero los issues de esos dos repos.
 
-Tus credenciales de Garmin solo se usan una vez, en tu máquina, para generar tokens. No las metas en ningún fichero de este repo.
+Tus credenciales de Garmin solo se usan una vez, en tu terminal, para generar tokens. No las metas en ningún fichero ni se las des a Claude en la conversación.
 
 ## Instalación en cinco pasos
 
-### 1. Instala garmin_mcp
-
-**Claude Desktop:** añade esto a `claude_desktop_config.json` (en macOS está en `~/Library/Application Support/Claude/`, en Windows en `%APPDATA%\Claude\`) y reinicia Claude Desktop:
-
-```json
-{
-  "mcpServers": {
-    "garmin": {
-      "command": "uvx",
-      "args": ["--python", "3.12", "--from", "git+https://github.com/Taxuspt/garmin_mcp", "garmin-mcp"]
-    }
-  }
-}
-```
-
-**Claude Code:**
+### 1. Clona el repo e instala `uv`
 
 ```bash
-claude mcp add garmin -- uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp
+git clone https://github.com/apbello/garmin-claude-starter.git
 ```
 
-### 2. Autentícate
+```bash
+cd garmin-claude-starter
+```
+
+Si no tienes `uv` (comprueba con `uv --version`):
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+### 2. Autentícate con Garmin
+
+Antes de configurar el MCP, para que encuentre los tokens al arrancar:
 
 ```bash
 uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp-auth
@@ -71,35 +69,47 @@ Te pide email, contraseña y el código MFA si lo tienes activado. Los tokens se
 uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp-auth --force-reauth
 ```
 
-### 3. Copia las skills
-
-**Claude Code:** copia las carpetas de `skills/` a `~/.claude/skills/` (para todos tus proyectos) o a `.claude/skills/` dentro del proyecto donde vayas a trabajar:
+### 3. Añade el MCP de Garmin a Claude Code
 
 ```bash
-cp -r skills/garmin-workout-creator skills/persistir-aprendizaje ~/.claude/skills/
+claude mcp add --scope user garmin -- uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp
 ```
 
-**Claude Desktop:** comprime cada carpeta de `skills/` en un `.zip` y súbela desde Ajustes → Capacidades → Skills.
+`--scope user` lo deja disponible en todas tus carpetas. Comprueba que aparece con `claude mcp list`.
 
-### 4. Prueba con el ejemplo
+### 4. Instala las skills y prepara tu carpeta de trabajo
 
-Pídele a Claude:
+Las skills van a tu carpeta personal de Claude Code:
 
-> Sube a mi Garmin el workout de `ejemplos/fuerza-full-body.json` y prográmalo para mañana.
+```bash
+mkdir -p ~/.claude/skills && cp -r skills/* ~/.claude/skills/
+```
 
-Luego abre el reloj, sincroniza y entra en el entrenamiento. Comprueba tres cosas: que los ejercicios tienen nombre (no "Go"), que los descansos hacen cuenta atrás y que te propone el peso en las series que lo llevan. Si las tres salen bien, el armazón funciona.
+Tus datos van en una carpeta aparte, **no dentro de este repo** (es público y no quieres que tu perfil acabe en un fork). Por ejemplo, `~/entreno`:
 
-### 5. Qué hacer después
+```bash
+mkdir -p ~/entreno && cp plantillas/*.md GOTCHAS.md ejemplos/fuerza-full-body.json ~/entreno/
+```
 
-Copia `plantillas/` a donde vayas a trabajar con Claude y rellena **solo** lo mínimo de `perfil.md`: objetivo, días, minutos y material. Pide tu primera sesión. El resto se llena usándolo (ver la siguiente sección).
+### 5. Arranca con `primeros-pasos`
+
+```bash
+cd ~/entreno && claude
+```
+
+Y dile:
+
+> Empecemos.
+
+La skill `primeros-pasos` hace el resto contigo: comprueba que Claude ve tu Garmin, sube el workout de ejemplo y lo verifica, te dice qué mirar en el reloj, prepara tu perfil con lo mínimo para arrancar y te propone la primera sesión. Si algo falla por el camino, te dice qué es y cómo arreglarlo.
 
 ## Por dónde empezar de verdad
 
 El orden que funciona, después de haberlo hecho al revés:
 
-1. **Instala y prueba.** Los cinco pasos de arriba. Una tarde.
+1. **Instala y prueba.** Los cinco pasos de arriba, terminando con `primeros-pasos`. Una tarde.
 2. **Vete al gimnasio y apunta lo que falle.** Un ejercicio sin nombre, un descanso que no cuenta, una máquina que no tienes, una carga que no cuadra. Todo a `log.md`, en bruto, desde el móvil si hace falta.
-3. **Monta el mecanismo de aprendizaje.** Instala `persistir-aprendizaje` y úsalo con lo que apuntaste: cada fallo se convierte en una regla escrita en el sitio correcto. Esta es la pieza que hace que el sistema mejore en vez de descubrir lo mismo tres veces.
+3. **Usa el mecanismo de aprendizaje.** Vuelve a `~/entreno` con lo que apuntaste y deja que `persistir-aprendizaje` lo procese: cada fallo se convierte en una regla escrita en el sitio correcto. Esta es la pieza que hace que el sistema mejore en vez de descubrir lo mismo tres veces.
 4. **Veinte minutos el domingo.** Repasa el log de la semana con Claude, ajusta el plan de la siguiente y sube los workouts.
 5. **Cuatro semanas antes de juzgar.** La primera semana va a estar llena de fricciones. Eso es el sistema aprendiendo, no el sistema fallando.
 
@@ -113,6 +123,8 @@ El orden que funciona, después de haberlo hecho al revés:
 ├── GOTCHAS.md                     # catálogo de trampas de Garmin: síntoma + regla
 ├── LICENSE
 ├── skills/
+│   ├── primeros-pasos/            # onboarding: verifica la conexión y arranca contigo
+│   │   └── SKILL.md
 │   ├── garmin-workout-creator/    # construir y subir workouts
 │   │   ├── SKILL.md
 │   │   └── references/exercises.md
