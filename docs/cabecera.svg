@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1456" height="816" viewBox="0 0 1456 816">
+  <rect width="1456" height="816" fill="#F3F0E8"/>
+  <!-- Estructura del workout: casi todo es armazón (discontinuo); solo una parte está rellena -->
+  <g fill="none" stroke="#1D1D1B" stroke-width="3" stroke-dasharray="10 9" stroke-linecap="round">
+    <rect x="300" y="198" width="300" height="44" rx="22"/>
+    <rect x="300" y="262" width="420" height="44" rx="22"/>
+    <rect x="356" y="326" width="300" height="44" rx="22"/>
+    <rect x="356" y="454" width="250" height="44" rx="22"/>
+    <rect x="300" y="518" width="420" height="44" rx="22"/>
+    <rect x="300" y="582" width="230" height="44" rx="22"/>
+  </g>
+  <rect x="356" y="390" width="360" height="44" rx="22" fill="#1D1D1B"/>
+  <line x1="330" y1="318" x2="330" y2="506" stroke="#1D1D1B" stroke-width="3" stroke-linecap="round" opacity="0.35"/>
+  <!-- Reloj con cuenta atrás de descanso -->
+  <g transform="translate(1010 408)">
+    <rect x="-62" y="-250" width="124" height="80" rx="18" fill="#1D1D1B"/>
+    <rect x="-62" y="170" width="124" height="80" rx="18" fill="#1D1D1B"/>
+    <circle r="186" fill="#1D1D1B"/>
+    <circle r="160" fill="#F3F0E8"/>
+    <circle r="128" fill="none" stroke="#1D1D1B" stroke-width="10" opacity="0.12"/>
+    <circle r="128" fill="none" stroke="#D4562E" stroke-width="10" stroke-linecap="round"
+            stroke-dasharray="563 805" transform="rotate(-90)"/>
+    <text y="22" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+          font-size="72" font-weight="500" fill="#1D1D1B" letter-spacing="1">1:30</text>
+    <text y="66" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+          font-size="22" font-weight="500" fill="#1D1D1B" opacity="0.55" letter-spacing="4">REST</text>
+  </g>
+</svg>

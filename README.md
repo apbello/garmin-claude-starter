@@ -1,5 +1,7 @@
 # garmin-claude-starter
 
+![](docs/cabecera.png)
+
 **Esto es el armazón, no mi sistema. El 95% del valor está en el contexto que acumules tú.**
 
 Un punto de partida para que Claude Code cree tus entrenamientos, los suba a tu reloj Garmin y aprenda de lo que falla. Lo que hay aquí me costó meses de prueba y error: la estructura de los workouts que Garmin acepta, las trampas que no avisan y un mecanismo para que el sistema no descubra lo mismo tres veces. Con esto deberías tenerlo funcionando en una tarde.
