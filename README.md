@@ -126,6 +126,10 @@ El orden que funciona, después de haberlo hecho al revés:
 
 Si descubres una trampa nueva, abre un issue o un PR a `GOTCHAS.md` con el síntoma, la regla, la fecha y el modelo de reloj. Es el formato que hace que el catálogo sea fiable.
 
+## Créditos
+
+La base original de la skill `garmin-workout-creator` es de Rodrigo Alvarez. Las trampas, correcciones y el resto del repo son de Alvaro Perez Bello.
+
 ## Licencia
 
 MIT. Ver [LICENSE](LICENSE).

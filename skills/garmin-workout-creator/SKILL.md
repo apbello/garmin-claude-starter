@@ -5,6 +5,8 @@ description: Create and upload structured strength or running workouts to Garmin
 
 # Garmin Workout Creator
 
+> Base original de Rodrigo Alvarez; trampas y correcciones de Alvaro Perez Bello.
+
 A skill for creating well-structured workouts and uploading them to Garmin Connect via the `garmin:upload_workout` MCP tool.
 
 ---
